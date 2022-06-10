@@ -41,7 +41,7 @@
                 Width="80" Height="30" 
                 Content="Поиск" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
                 Margin="0,-30,-345,0"/>
-        <TextBox x:Name="TextBoxLogin" 
+        <TextBox x:Name="TextBoxSearch" 
                  FontFamily="Segoe UI" FontWeight="Bold" FontSize="14"
                  Height="20" Width="125"
                  Margin="0,-30,-130,0"/>
