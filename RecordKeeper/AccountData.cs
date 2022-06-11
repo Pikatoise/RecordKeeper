@@ -101,5 +101,10 @@ namespace RecordKeeper
         {
             return currentAccount.Access;
         }
+
+        public void ResetCurrentUser()
+        {
+            currentAccount = new Account();
+        }
     }
 }

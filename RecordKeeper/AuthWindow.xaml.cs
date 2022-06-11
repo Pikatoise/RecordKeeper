@@ -49,6 +49,10 @@ namespace RecordKeeper
 
         void OpenNextWindow(string access, string login = "Admin")
         {
+            this.Visibility = Visibility.Collapsed;
+            ClearTextBox();
+            this.UpdateLayout();
+
             switch (access)
             {
                 case "Admin":
@@ -62,9 +66,12 @@ namespace RecordKeeper
                 case "Storekeeper":
                     return;
             }
+        }
 
-            this.Visibility = Visibility.Collapsed;
-            this.UpdateLayout();
+        void ClearTextBox()
+        {
+            TextBoxLogin.Text = string.Empty;
+            TextBoxPassword.Password = string.Empty;
         }
     }
 }
