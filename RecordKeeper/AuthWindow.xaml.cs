@@ -30,13 +30,32 @@ namespace RecordKeeper
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            switch (accountData.TryAuth(TextBoxLogin.Text, TextBoxPassword.Password))
+            {
+                case -1:
+                    MessageBox.Show("Введите логин и пароль!", "Ошибка");
+                    return;
+                case 0:
+                    MessageBox.Show("Неверный логин или пароль!", "Ошибка");
+                    return;
+                case 1:
+                    OpenNextWindow(accountData.currentAccount.Access, accountData.currentAccount.Login);
+                    return;
+                case 2:
+                    OpenNextWindow("Admin");
+                    return;
+            }
 
 
            /* AdminWindow adminWindow = new AdminWindow(this);
             adminWindow.Show();
             this.Visibility = Visibility.Collapsed;
             this.UpdateLayout();*/
+        }
+
+        void OpenNextWindow(string access, string login = "Admin")
+        {
+
         }
     }
 }

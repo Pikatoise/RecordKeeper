@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RecordKeeper
 {
@@ -62,6 +63,33 @@ namespace RecordKeeper
 
                 this.accounts.Add(new Account(temp[i].Split(new char[] {'_'})));
             }
+        }
+
+        public int TryAuth(string login, string password)                        // -1 = Отсутствует логин или пароль;   
+        {                                                                        // 0 = Логин или пароль неверные;
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))   // 1 = Вход под обычным пользователем;
+            {                                                                    // 2 = Вход под админом
+                return -1;
+            }
+
+            if (login == "Admin" && password == "ont2022")
+            {
+                return 2;
+            }
+
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (accounts[i].Login == login)
+                {
+                    if (accounts[i].Password == password)
+                    {
+                        currentAccount = accounts[i];
+                        return 1;
+                    }
+                }
+            }
+
+            return 0;
         }
     }
 }
