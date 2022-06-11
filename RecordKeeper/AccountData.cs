@@ -108,7 +108,7 @@ namespace RecordKeeper
             currentAccount = new Account();
         }
 
-        public void SaveData()
+        void SaveData()
         {
             using(StreamWriter stream = new StreamWriter(accPath, false))
             {
@@ -125,10 +125,12 @@ namespace RecordKeeper
         public void DataToGrid(DataGrid grid)
         {
             grid.ItemsSource = accounts;
-            /*for (int i = 0; i < accounts.Count; i++)
-            {
-                
-            }*/
+        }
+
+        public void RemoveAccount(Account acc)
+        {
+            accounts.Remove(acc);
+            SaveData();
         }
     }
 }

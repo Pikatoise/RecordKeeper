@@ -39,5 +39,18 @@ namespace RecordKeeper
         {
             accountData.DataToGrid(MainGrid);
         }
+
+        private void ButtonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(MainGrid.SelectedItem == null))
+            {
+                if (MessageBox.Show("Вы уверены?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    accountData.RemoveAccount((AccountData.Account)MainGrid.SelectedItem);
+                    MainGrid.Items.Refresh();
+                }
+            }
+            else MessageBox.Show("Выберите аккаунт!", "Ошибка");
+        }
     }
 }
