@@ -132,5 +132,18 @@ namespace RecordKeeper
             accounts.Remove(acc);
             SaveData();
         }
+
+        public Account SearchLogin(string login)
+        {
+            for (int i=0; i < accounts.Count; i++)
+            {
+                if (accounts[i].Login == login)
+                {
+                    return accounts[i];
+                }
+            }
+
+            return new Account();
+        }
     }
 }

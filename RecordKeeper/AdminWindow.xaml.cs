@@ -52,5 +52,15 @@ namespace RecordKeeper
             }
             else MessageBox.Show("Выберите аккаунт!", "Ошибка");
         }
+
+        private void ButtonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(accountData.SearchLogin(TextBoxSearch.Text).Login==null))
+            {
+                MainGrid.SelectedItem = accountData.SearchLogin(TextBoxSearch.Text);
+                MainGrid.ScrollIntoView(MainGrid.SelectedItem);
+            }
+            else MessageBox.Show("Аккаунт не найден!", "Ошибка");
+        }
     }
 }
