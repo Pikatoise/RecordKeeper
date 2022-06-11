@@ -12,7 +12,6 @@ namespace RecordKeeper
     {
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            //((sender as FrameworkElement).TemplatedParent as Window).Close();
             Environment.Exit(0);
         }
 

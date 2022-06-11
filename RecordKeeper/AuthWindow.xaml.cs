@@ -20,17 +20,23 @@ namespace RecordKeeper
     /// </summary>
     public partial class AuthWindow : Window
     {
+        AccountData accountData;
+
         public AuthWindow()
         {
             InitializeComponent();
+            accountData = new AccountData();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            AdminWindow adminWindow = new AdminWindow(this);
+
+
+
+           /* AdminWindow adminWindow = new AdminWindow(this);
             adminWindow.Show();
             this.Visibility = Visibility.Collapsed;
-            this.UpdateLayout();
+            this.UpdateLayout();*/
         }
     }
 }
