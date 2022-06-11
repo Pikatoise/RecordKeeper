@@ -20,17 +20,24 @@ namespace RecordKeeper
     public partial class AdminWindow : Window
     {
         AuthWindow authWindow;
+        AccountData accountData;
 
         public AdminWindow(AuthWindow authWindow)
         {
             InitializeComponent();
             this.authWindow = authWindow;
+            this.accountData = authWindow.accountData;
         }
 
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             authWindow.Visibility = Visibility.Visible;
+        }
+
+        private void MainGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            accountData.DataToGrid(MainGrid);
         }
     }
 }

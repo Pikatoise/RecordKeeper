@@ -15,15 +15,13 @@
                 Width="80" Height="30" 
                 Content="Выйти" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
                 Click="ButtonExit_Click"/>
-        <DataGrid Height="290" Width="600" 
+        <DataGrid x:Name="MainGrid"
+                  Loaded="MainGrid_Loaded"
+                  Height="290" Width="600"
+                  FontFamily="Segoe UI" FontSize="12" FontWeight="Bold"
                   Margin="0,20,0,0"
-                  AutoGenerateColumns="False" 
-                  HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Логин"/>
-                <DataGridTextColumn Header="Пароль"/>
-                <DataGridTextColumn Header="Права"/>
-            </DataGrid.Columns>
+                  HorizontalGridLinesBrush="DarkGray" RowBackground="LightGray" AlternatingRowBackground="White"
+                  IsReadOnly="True">
         </DataGrid>
         <Button Style="{StaticResource GreenButtonStyle}" 
                 Width="80" Height="30" 

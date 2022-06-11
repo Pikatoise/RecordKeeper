@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace RecordKeeper
 {
@@ -15,15 +16,15 @@ namespace RecordKeeper
 
         public struct Account
         {
-            public string Login;
-            public string Password;
-            public string Access;
+            public string Login { get; set; }
+            public string Password { get; set; }
+            public string Access { get; set; }
 
             public Account (string[] data)
             {
-                Login = data[0];
-                Password = data[1];
-                Access = data[2];
+                this.Login = data[0];
+                this.Password = data[1];
+                this.Access = data[2];
             }
         }
 
@@ -67,8 +68,8 @@ namespace RecordKeeper
 
         public int TryAuth(string login, string password)                        // -1 = Отсутствует логин или пароль;   
         {                                                                        // 0 = Логин или пароль неверные;
-            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))   // 1 = Вход под обычным пользователем;
-            {                                                                    // 2 = Вход под админом
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))   // 1 = Успешный вход под обычным пользователем;
+            {                                                                    // 2 = Успешный вход под админом
                 return -1;
             }
 
@@ -105,6 +106,29 @@ namespace RecordKeeper
         public void ResetCurrentUser()
         {
             currentAccount = new Account();
+        }
+
+        public void SaveData()
+        {
+            using(StreamWriter stream = new StreamWriter(accPath, false))
+            {
+                for (int i = 0; i < accounts.Count; i++)
+                {
+                    if (i == accounts.Count-1)
+                    {
+                        stream.Write($"{accounts[i].Login}_{accounts[i].Password}_{accounts[i].Access}");
+                    } else stream.WriteLine($"{accounts[i].Login}_{accounts[i].Password}_{accounts[i].Access}");
+                }
+            }
+        }
+
+        public void DataToGrid(DataGrid grid)
+        {
+            grid.ItemsSource = accounts;
+            /*for (int i = 0; i < accounts.Count; i++)
+            {
+                
+            }*/
         }
     }
 }
