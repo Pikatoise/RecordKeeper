@@ -20,7 +20,7 @@ namespace RecordKeeper
     /// </summary>
     public partial class AuthWindow : Window
     {
-        AccountData accountData;
+        public AccountData accountData;
 
         public AuthWindow()
         {
@@ -39,23 +39,32 @@ namespace RecordKeeper
                     MessageBox.Show("Неверный логин или пароль!", "Ошибка");
                     return;
                 case 1:
-                    OpenNextWindow(accountData.currentAccount.Access, accountData.currentAccount.Login);
+                    OpenNextWindow(accountData.GetCurrentAccess(), accountData.GetCurrentLogin());
                     return;
                 case 2:
                     OpenNextWindow("Admin");
                     return;
             }
-
-
-           /* AdminWindow adminWindow = new AdminWindow(this);
-            adminWindow.Show();
-            this.Visibility = Visibility.Collapsed;
-            this.UpdateLayout();*/
         }
 
         void OpenNextWindow(string access, string login = "Admin")
         {
+            switch (access)
+            {
+                case "Admin":
+                    AdminWindow adminWindow = new AdminWindow(this);
+                    adminWindow.Show();
+                    return;
+                case "Kitchen":
+                    return;
+                case "Accountant":
+                    return;
+                case "Storekeeper":
+                    return;
+            }
 
+            this.Visibility = Visibility.Collapsed;
+            this.UpdateLayout();
         }
     }
 }

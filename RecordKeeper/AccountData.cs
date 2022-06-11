@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace RecordKeeper
 {
-    internal class AccountData
+    public class AccountData
     {
         string docPath;
         string accPath;
@@ -27,7 +27,7 @@ namespace RecordKeeper
             }
         }
 
-        public Account currentAccount;
+        Account currentAccount;
 
         List<Account> accounts = new List<Account>();
 
@@ -90,6 +90,16 @@ namespace RecordKeeper
             }
 
             return 0;
+        }
+
+        public string GetCurrentLogin()
+        {
+            return currentAccount.Login;
+        }
+
+        public string GetCurrentAccess()
+        {
+            return currentAccount.Access;
         }
     }
 }
