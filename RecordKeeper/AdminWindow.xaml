@@ -28,7 +28,8 @@
         <Button Style="{StaticResource BaseButtonStyle}" 
                 Width="100" Height="30" 
                 Content="Сортировать" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
-                Margin="0,-30,325,0"/>
+                Margin="0,-30,325,0"
+                Click="ButtonSort_Click"/>
         <Button Style="{StaticResource RedButtonStyle}" 
                 Width="80" Height="30" 
                 Content="Удалить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"

@@ -62,5 +62,11 @@ namespace RecordKeeper
             }
             else MessageBox.Show("Аккаунт не найден!", "Ошибка");
         }
+
+        private void ButtonSort_Click(object sender, RoutedEventArgs e)
+        {
+            accountData.Sort();
+            MainGrid.Items.Refresh();
+        }
     }
 }

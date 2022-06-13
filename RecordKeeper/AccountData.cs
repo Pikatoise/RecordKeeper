@@ -13,6 +13,7 @@ namespace RecordKeeper
     {
         string docPath;
         string accPath;
+        bool ToUpOrToLowSort = true;
 
         public struct Account
         {
@@ -144,6 +145,42 @@ namespace RecordKeeper
             }
 
             return new Account();
+        }
+
+        public void Sort()
+        {
+            if (ToUpOrToLowSort)
+            {
+                for (int i = 0; i <= accounts.Count; i++)
+                {
+                    for (int j = i+1; j < accounts.Count; j++)
+                    {
+                        if (accounts[i].Access[0] > accounts[j].Access[0])
+                        {
+                            Account temp = accounts[i];
+                            accounts[i] = accounts[j];
+                            accounts[j] = temp;
+                        }
+                    }
+                }
+            } 
+            else
+            {
+                for (int i = 0; i <= accounts.Count; i++)
+                {
+                    for (int j = i+1; j < accounts.Count; j++)
+                    {
+                        if (accounts[i].Access[0] < accounts[j].Access[0])
+                        {
+                            Account temp = accounts[i];
+                            accounts[i] = accounts[j];
+                            accounts[j] = temp;
+                        }
+                    }
+                }
+            }
+
+            ToUpOrToLowSort = !ToUpOrToLowSort;
         }
     }
 }
