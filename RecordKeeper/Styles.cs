@@ -19,5 +19,10 @@ namespace RecordKeeper
         {
             ((sender as FrameworkElement).TemplatedParent as Window).WindowState = WindowState.Minimized;
         }
+
+        private void CloseDialog_Click(object sender, RoutedEventArgs e)
+        {
+            ((sender as FrameworkElement).TemplatedParent as Window).Close();
+        }
     }
 }

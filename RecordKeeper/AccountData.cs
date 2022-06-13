@@ -182,5 +182,11 @@ namespace RecordKeeper
 
             ToUpOrToLowSort = !ToUpOrToLowSort;
         }
+
+        public void AddAccount(string login, string password, string access)
+        {
+            accounts.Add(new Account(new string[] {login, password, access}));
+            SaveData();
+        }
     }
 }

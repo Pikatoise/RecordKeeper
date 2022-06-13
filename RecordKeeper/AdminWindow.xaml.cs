@@ -42,7 +42,7 @@ namespace RecordKeeper
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
-            if (!(MainGrid.SelectedItem == null))
+            if (MainGrid.SelectedItem != null)
             {
                 if (MessageBox.Show("Вы уверены?", "Подтверждение", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -55,7 +55,7 @@ namespace RecordKeeper
 
         private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (!(accountData.SearchLogin(TextBoxSearch.Text).Login==null))
+            if (accountData.SearchLogin(TextBoxSearch.Text).Login != null)
             {
                 MainGrid.SelectedItem = accountData.SearchLogin(TextBoxSearch.Text);
                 MainGrid.ScrollIntoView(MainGrid.SelectedItem);
@@ -67,6 +67,22 @@ namespace RecordKeeper
         {
             accountData.Sort();
             MainGrid.Items.Refresh();
+        }
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AccountAddWindow accountAddWindow = new AccountAddWindow();
+            accountAddWindow.ShowDialog();
+
+            if (accountAddWindow.login != null && accountAddWindow.password != null && accountAddWindow.access != null)
+            {
+                if (accountData.SearchLogin(accountAddWindow.login).Login == null)
+                {
+                    accountData.AddAccount(accountAddWindow.login, accountAddWindow.password, accountAddWindow.access);
+                    MainGrid.Items.Refresh();
+                }
+                else MessageBox.Show("Логин занят!","Ошибка");
+            }
         }
     }
 }
