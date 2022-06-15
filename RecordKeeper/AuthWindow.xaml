@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Height="400" 
         Width="350"
+        Title="Авторизация"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource BaseWindowStyle}" 
         Icon="/Resources/sunglasses.ico">
@@ -23,14 +24,16 @@
         <TextBox x:Name="TextBoxLogin" 
                  FontFamily="Segoe UI" FontWeight="Bold" FontSize="14" 
                  Margin="0,0,0,0"
-                 Width="130" MaxWidth="130"/>
+                 Width="130" MaxWidth="130"
+                 Text="Defaault"/>
         
         <TextBlock Text="Пароль" FontFamily="Segoe UI" FontSize="14" 
                    Margin="0,0,0,0"/>
         <PasswordBox x:Name="TextBoxPassword" 
                      FontFamily="Segoe UI" FontWeight="Bold" FontSize="14" 
                      Margin="0,0,0,0"
-                     Width="130" MaxWidth="130"/>
+                     Width="130" MaxWidth="130"
+                     Password="qwerty"/>
 
         <Button Style="{StaticResource BaseButtonStyle}" 
                 Width="80" Height="30" 

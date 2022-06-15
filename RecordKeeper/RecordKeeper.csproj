@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome5" Version="2.1.11" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\logo_gorki.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
