@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecordKeeper"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         Height="400" 
         Width="350"
@@ -18,17 +19,24 @@
         
         <TextBlock Text="Авторизация" FontFamily="Segoe UI" FontSize="20" FontWeight="Bold" 
                    Margin="0,50,0,0"/>
-        
-        <TextBlock Text="Логин" FontFamily="Segoe UI" FontSize="14" 
-                   Margin="0,5,0,0"/>
+
+
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <fa:SvgAwesome Icon="Regular_User" Width="15" Height="15"/>
+            <TextBlock Text="Логин" FontFamily="Segoe UI" FontSize="14"
+                       Margin="5,0,0,0"/>
+        </StackPanel>
         <TextBox x:Name="TextBoxLogin" 
                  FontFamily="Segoe UI" FontWeight="Bold" FontSize="14" 
                  Margin="0,0,0,0"
                  Width="130" MaxWidth="130"
                  Text="Defaault"/>
-        
-        <TextBlock Text="Пароль" FontFamily="Segoe UI" FontSize="14" 
-                   Margin="0,0,0,0"/>
+
+        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+            <fa:SvgAwesome Icon="Solid_Key" Height="15" Width="15"/>
+            <TextBlock Text="Пароль" FontFamily="Segoe UI" FontSize="14" 
+                   Margin="5,0,0,0"/>
+        </StackPanel>
         <PasswordBox x:Name="TextBoxPassword" 
                      FontFamily="Segoe UI" FontWeight="Bold" FontSize="14" 
                      Margin="0,0,0,0"
@@ -36,9 +44,13 @@
                      Password="qwerty"/>
 
         <Button Style="{StaticResource BaseButtonStyle}" 
-                Width="80" Height="30" 
-                Content="Вход" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14" 
+                Width="100" Height="40"
                 Margin="0,20,0,0"
-                Click="Button_Click"/>
+                Click="Button_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Вход" FontFamily="Segoe UI" FontWeight="Bold" FontSize="14"/>
+                <fa:SvgAwesome Icon="Solid_SignInAlt" Height="15" Width="15" Margin="5,3,0,0"/>
+            </StackPanel>
+        </Button>
     </StackPanel>
 </Window>
