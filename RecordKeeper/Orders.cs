@@ -12,8 +12,6 @@ namespace RecordKeeper
 {
     public class Orders
     {
-        string docPath;
-
         public struct Item
         {
             public string Type { get; set; }
@@ -32,17 +30,19 @@ namespace RecordKeeper
             }
         }
 
+        string docPath;
         public List<List<Item>> ActiveOrders = new List<List<Item>>();
         List<Item> tempOrder = new List<Item>();
-        List<bool> isConfirm = new List<bool>();
+        List<string> ordersStatus = new List<string>();
         DataGrid GridDescribe;
         ListView ListViewOrders;
         DataGrid GridCreation;
+
         public Orders(ListView listViewOrders, DataGrid gridDescribe, DataGrid gridCreation)
         {
-            ListViewOrders=listViewOrders;
-            GridDescribe=gridDescribe;
-            GridCreation=gridCreation;
+            ListViewOrders = listViewOrders;
+            GridDescribe = gridDescribe;
+            GridCreation = gridCreation;
 
             InitOrders();
             InitListItems();
@@ -50,8 +50,8 @@ namespace RecordKeeper
 
         public Orders(ListView listViewOrders, DataGrid gridDescribe)
         {
-            ListViewOrders=listViewOrders;
-            GridDescribe=gridDescribe;
+            ListViewOrders = listViewOrders;
+            GridDescribe = gridDescribe;
 
             InitOrders();
             InitListItems();
@@ -76,10 +76,7 @@ namespace RecordKeeper
                     stream.Close();
                 }
 
-                if (temp[0].Contains("false"))
-                {
-                    isConfirm.Add(false);
-                } else isConfirm.Add(true);
+                ordersStatus.Add(temp[0]);
 
                 for (int j = 1; j < temp.Length; j++)
                 {
@@ -105,10 +102,25 @@ namespace RecordKeeper
                 };
                 listViewItem.Selected += ListViewItem_Selected;
 
-                if (isConfirm[i])
+                // 0 - Не проверен Красный
+                // 1 - Проверен, одобрен Желтый
+                // 2 - Проверен, отклонен Черный
+                // 3 - Исполнен Зеленый
+                switch (ordersStatus[i])
                 {
-                    listViewItem.Foreground = new SolidColorBrush(Colors.Green);
-                } else listViewItem.Foreground = new SolidColorBrush(Colors.Red);
+                    case "0":
+                        listViewItem.Foreground = new SolidColorBrush(Colors.Red);
+                        break;
+                    case "1":
+                        listViewItem.Foreground = new SolidColorBrush(Colors.Yellow);
+                        break;
+                    case "2":
+                        listViewItem.Foreground = new SolidColorBrush(Colors.Black);
+                        break;
+                    case "3":
+                        listViewItem.Foreground = new SolidColorBrush(Colors.Green);
+                        break;
+                }
 
                 this.ListViewOrders.Items.Add(listViewItem) ;
             }

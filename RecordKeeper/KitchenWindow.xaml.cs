@@ -19,21 +19,13 @@ namespace RecordKeeper
     /// </summary>
     public partial class KitchenWindow : Window
     {
-        string currentLogin;
         Orders orders;
 
-        public KitchenWindow(string login)
+        public KitchenWindow()
         {
             InitializeComponent();
 
-            currentLogin = login;
-
             orders = new Orders(ListViewOrders,GridDescribe,GridCreation);
-        }
-
-        private void GridDescribe_Loaded(object sender, RoutedEventArgs e)
-        {
-           
         }
 
         private void ButtonInsert_Click(object sender, RoutedEventArgs e)

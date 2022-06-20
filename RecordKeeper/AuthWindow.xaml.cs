@@ -39,7 +39,7 @@ namespace RecordKeeper
                     MessageBox.Show("Неверный логин или пароль!", "Ошибка");
                     return;
                 case 1:
-                    OpenNextWindow(accountData.GetCurrentAccess(), accountData.GetCurrentLogin());
+                    OpenNextWindow(accountData.GetCurrentAccess());
                     return;
                 case 2:
                     OpenNextWindow("Admin");
@@ -47,7 +47,7 @@ namespace RecordKeeper
             }
         }
 
-        void OpenNextWindow(string access, string login = "Admin")
+        void OpenNextWindow(string access)
         {
             this.Visibility = Visibility.Collapsed;
             ClearTextBox();
@@ -60,7 +60,7 @@ namespace RecordKeeper
                     adminWindow.Show();
                     return;
                 case "Kitchen":
-                    KitchenWindow kitchenWindow = new KitchenWindow(login);
+                    KitchenWindow kitchenWindow = new KitchenWindow();
                     kitchenWindow.Show();
                     return;
                 case "Accountant":
