@@ -98,7 +98,8 @@ namespace RecordKeeper
                     Content = $"Заказ {i+1}",
                     Tag = i,
                     FontFamily= new FontFamily("Segoe UI"),
-                    FontSize=16
+                    FontSize=16,
+                    FontWeight = FontWeights.Bold
                 };
                 listViewItem.Selected += ListViewItem_Selected;
 
@@ -106,18 +107,18 @@ namespace RecordKeeper
                 // 1 - Проверен, одобрен Желтый
                 // 2 - Проверен, отклонен Черный
                 // 3 - Исполнен Зеленый
-                switch (ordersStatus[i])
+                switch (ordersStatus[i][0])
                 {
-                    case "0":
+                    case '0':
                         listViewItem.Foreground = new SolidColorBrush(Colors.Red);
                         break;
-                    case "1":
+                    case '1':
                         listViewItem.Foreground = new SolidColorBrush(Colors.Yellow);
                         break;
-                    case "2":
+                    case '2':
                         listViewItem.Foreground = new SolidColorBrush(Colors.Black);
                         break;
-                    case "3":
+                    case '3':
                         listViewItem.Foreground = new SolidColorBrush(Colors.Green);
                         break;
                 }
