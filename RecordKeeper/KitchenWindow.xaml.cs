@@ -27,13 +27,12 @@ namespace RecordKeeper
 
         private void ButtonInsert_Click(object sender, RoutedEventArgs e)
         {
-            if (!(string.IsNullOrWhiteSpace(TextBoxName.Text) || 
-                string.IsNullOrWhiteSpace(TextBoxPrice.Text) || 
-                string.IsNullOrWhiteSpace(TextBoxCount.Text)))
+            if (!(string.IsNullOrWhiteSpace(TextBoxName.Text) || string.IsNullOrWhiteSpace(TextBoxPrice.Text) || string.IsNullOrWhiteSpace(TextBoxCount.Text)))
             {
                 orders.AddItemToTemp(new string[] {
                 ((TextBlock)((ListBoxItem)ListBoxType.SelectedItem).Content).Text,
-                TextBoxName.Text, TextBoxCount.Text,
+                TextBoxName.Text, 
+                TextBoxCount.Text,
                 ((TextBlock)((ListBoxItem)ListBoxUnit.SelectedItem).Content).Text,
                 TextBoxPrice.Text });
             }
@@ -53,6 +52,20 @@ namespace RecordKeeper
             else MessageBox.Show("Выберите предмет!", "Ошибка");
 
             GridCreation.Items.Refresh();
+        }
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (GridCreation.Items.Count > 0)
+            {
+                orders.SaveNewOrder();
+
+                MessageBox.Show("Заказ отправлен!", "Сообщение");
+            }
+            else MessageBox.Show("Нельзя отправить пустой заказ!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+            GridCreation.Items.Refresh();
+            GridDescribe.Items.Refresh();
         }
     }
 }

@@ -215,6 +215,7 @@
                                 Content="Удалить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
                                 Margin="-375,5,0,0"/>
                         <Button Style="{StaticResource GreenButtonStyle}"
+                                Click="ButtonSave_Click"
                                 Width="160" Height="30"
                                 Content="Отправить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
                                 Margin="295,-30,0,0"/>

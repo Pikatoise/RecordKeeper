@@ -36,13 +36,11 @@ namespace RecordKeeper
         List<string> ordersStatus = new List<string>();
         DataGrid GridDescribe;
         ListView ListViewOrders;
-        DataGrid GridCreation;
 
         public Orders(ListView listViewOrders, DataGrid gridDescribe, DataGrid gridCreation)
         {
             ListViewOrders = listViewOrders;
             GridDescribe = gridDescribe;
-            GridCreation = gridCreation;
 
             gridCreation.ItemsSource = tempOrder;
 
@@ -93,6 +91,8 @@ namespace RecordKeeper
 
         void InitListItems()
         {
+            this.ListViewOrders.Items.Clear();
+
             for (int i = 0; i < this.ActiveOrders.Count; i++)
             {
                 ListViewItem listViewItem = new ListViewItem()
@@ -143,6 +143,53 @@ namespace RecordKeeper
         public void RemoveItemFromTemp(Item toRemove)
         {
             tempOrder.Remove(toRemove);
+        }
+
+        public void SaveNewOrder()
+        {
+            string fileOrderName;
+            string fileOrderNamePath;
+            int nextOrder = 1;
+
+            while (true)
+            {
+                fileOrderName = $"Order{Directory.GetFiles(docPath).Length+nextOrder}";
+
+                if (File.Exists(docPath+$@"\{fileOrderName}.txt"))
+                {
+                    nextOrder++;
+                    continue;
+                } else
+                {
+                    fileOrderNamePath = docPath+$@"\{fileOrderName}.txt";
+                    File.Create(fileOrderNamePath).Close();
+                    break;
+                }
+            }
+
+            using (StreamWriter stream = new StreamWriter(fileOrderNamePath, false))
+            {
+                stream.WriteLine("0");
+
+                for (int i=0; i<tempOrder.Count; i++)
+                {
+                    if (i == tempOrder.Count-1)
+                    {
+                        stream.Write($"{tempOrder[i].Type}_{tempOrder[i].Name}_{tempOrder[i].Count}_{tempOrder[i].Unit}_{tempOrder[i].Price}");
+                    }
+                    else
+                    {
+                        stream.WriteLine($"{tempOrder[i].Type}_{tempOrder[i].Name}_{tempOrder[i].Count}_{tempOrder[i].Unit}_{tempOrder[i].Price}");
+                    }
+                }
+            }
+
+            ActiveOrders = new List<List<Item>>();
+            tempOrder = new List<Item>();
+            ordersStatus = new List<string>();
+
+            InitOrders();
+            InitListItems();
         }
     }
 }
