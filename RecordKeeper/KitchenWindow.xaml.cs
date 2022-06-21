@@ -32,9 +32,9 @@ namespace RecordKeeper
                 orders.AddItemToTemp(new string[] {
                 ((TextBlock)((ListBoxItem)ListBoxType.SelectedItem).Content).Text,
                 TextBoxName.Text, 
-                TextBoxCount.Text,
+                TextBoxCount.Text.Replace(" ",""),
                 ((TextBlock)((ListBoxItem)ListBoxUnit.SelectedItem).Content).Text,
-                TextBoxPrice.Text });
+                TextBoxPrice.Text.Replace(" ","")});
             }
             else MessageBox.Show("Неверные данные!", "Ошибка");
 
@@ -66,6 +66,14 @@ namespace RecordKeeper
 
             GridCreation.Items.Refresh();
             GridDescribe.Items.Refresh();
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

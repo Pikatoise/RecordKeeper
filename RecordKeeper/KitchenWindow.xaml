@@ -135,7 +135,8 @@
                         <TextBlock Text="Количество" FontFamily="Segoe UI" FontSize="14"
                                    HorizontalAlignment="Left"
                                    Margin="10,10,0,0"/>
-                        <TextBox x:Name="TextBoxCount" 
+                        <TextBox x:Name="TextBoxCount"
+                                 PreviewTextInput="TextBox_PreviewTextInput"
                                  Width="200"
                                  FontFamily="Segoe UI" FontSize="14"
                                  HorizontalAlignment="Left"
@@ -144,7 +145,8 @@
                         <TextBlock Text="Примерная стоймость за ед." FontFamily="Segoe UI" FontSize="14"
                                    HorizontalAlignment="Left"
                                    Margin="10,10,0,0"/>
-                        <TextBox x:Name="TextBoxPrice" 
+                        <TextBox x:Name="TextBoxPrice"
+                                 PreviewTextInput="TextBox_PreviewTextInput"
                                  Width="200"
                                  FontFamily="Segoe UI" FontSize="14"
                                  HorizontalAlignment="Left"
