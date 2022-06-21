@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace RecordKeeper
 {
-    /// <summary>
-    /// Логика взаимодействия для KitchenWindow.xaml
-    /// </summary>
     public partial class KitchenWindow : Window
     {
         Orders orders;
@@ -30,7 +27,32 @@ namespace RecordKeeper
 
         private void ButtonInsert_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!(string.IsNullOrWhiteSpace(TextBoxName.Text) || 
+                string.IsNullOrWhiteSpace(TextBoxPrice.Text) || 
+                string.IsNullOrWhiteSpace(TextBoxCount.Text)))
+            {
+                orders.AddItemToTemp(new string[] {
+                ((TextBlock)((ListBoxItem)ListBoxType.SelectedItem).Content).Text,
+                TextBoxName.Text, TextBoxCount.Text,
+                ((TextBlock)((ListBoxItem)ListBoxUnit.SelectedItem).Content).Text,
+                TextBoxPrice.Text });
+            }
+            else MessageBox.Show("Неверные данные!", "Ошибка");
+
+            GridCreation.Items.Refresh();
+        }
+
+        private void ButtonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            if (GridCreation.Items.Count > 0 && GridCreation.SelectedItem != null)
+            {
+                orders.RemoveItemFromTemp((Orders.Item)GridCreation.SelectedItem);
+
+                GridCreation.SelectedItem = null;
+            }
+            else MessageBox.Show("Выберите предмет!", "Ошибка");
+
+            GridCreation.Items.Refresh();
         }
     }
 }

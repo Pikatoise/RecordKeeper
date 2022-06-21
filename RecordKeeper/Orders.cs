@@ -44,6 +44,8 @@ namespace RecordKeeper
             GridDescribe = gridDescribe;
             GridCreation = gridCreation;
 
+            gridCreation.ItemsSource = tempOrder;
+
             InitOrders();
             InitListItems();
         }
@@ -131,6 +133,16 @@ namespace RecordKeeper
         {
             GridDescribe.ItemsSource = ActiveOrders[(int)(sender as ListViewItem).Tag];
             GridDescribe.Items.Refresh();
+        }
+
+        public void AddItemToTemp(string[] data)
+        {
+            tempOrder.Add(new Item(data));
+        }
+
+        public void RemoveItemFromTemp(Item toRemove)
+        {
+            tempOrder.Remove(toRemove);
         }
     }
 }
