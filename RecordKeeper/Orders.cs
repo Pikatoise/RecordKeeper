@@ -248,6 +248,8 @@ namespace RecordKeeper
 
                 ordersStatus[(int)listViewItem.Tag] = "3";
             }
+
+            SaveOrderStatus((int)listViewItem.Tag);
         }
 
         void InitSmallActiveOrders()
@@ -284,6 +286,22 @@ namespace RecordKeeper
                 }
 
                 SmallActiveOrders[i].Add(new SmallItem("", totalAmount));
+            }
+        }
+
+        void SaveOrderStatus(int IndexOfOrder)
+        {
+            string tempFileText;
+            using (StreamReader stream = new StreamReader(Directory.GetFiles(docPath)[IndexOfOrder]))
+            {
+                tempFileText = stream.ReadToEnd();
+            }
+
+            tempFileText = ordersStatus[IndexOfOrder] + tempFileText.Substring(1);
+
+            using (StreamWriter stream = new StreamWriter(Directory.GetFiles(docPath)[IndexOfOrder],false))
+            {
+                stream.Write(tempFileText);
             }
         }
     }
