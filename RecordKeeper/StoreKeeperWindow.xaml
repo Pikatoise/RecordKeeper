@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecordKeeper"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         Title="Кладовщик" 
         Height="420" 
@@ -98,11 +99,16 @@
                       Margin="0,5,0,0"
                       Visibility="Collapsed">
                     <Button Style="{StaticResource GreenButtonStyle}" 
-                            Width="569" Height="30" 
-                            Content="Заказ исполнен" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                            Width="569" Height="30"
                             HorizontalAlignment="Center"
                             Tag="Ready"
-                            Click="Button_Click"/>
+                            Click="Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:SvgAwesome Icon="Solid_Check" Width="15" Height="15"/>
+                            <TextBlock Text="Заказ исполнен" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                                       Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </StackPanel>
         </Grid>

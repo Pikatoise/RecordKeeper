@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecordKeeper"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
         Title="Бухгалтерия" 
         Height="420" 
@@ -93,20 +94,32 @@
                 <Grid x:Name="PanelButtons"
                       Width="570"
                       Margin="0,5,0,0"
-                      Visibility="Collapsed">
+                      Visibility="Visible">
                     <Button Style="{StaticResource RedButtonStyle}" 
-                            Width="120" Height="30" 
-                            Content="Отклонить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                            Width="120" Height="30"
                             HorizontalAlignment="Left"
                             Tag="Decline"
-                            Click="Button_Click"/>
+                            Click="Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:SvgAwesome Icon="Solid_Times" 
+                                           Width="15" Height="15"/>
+                            <TextBlock Text="Отклонить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                                       Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                     
                     <Button Style="{StaticResource GreenButtonStyle}" 
-                            Width="120" Height="30" 
-                            Content="Принять" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                            Width="120" Height="30"
                             HorizontalAlignment="Right"
                             Tag="Accept"
-                            Click="Button_Click"/>
+                            Click="Button_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:SvgAwesome Icon="Solid_Check" 
+                                           Width="15" Height="15"/>
+                            <TextBlock Text="Принять" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                                       Margin="5,0,0,0"/>
+                        </StackPanel>
+                    </Button>
                 </Grid>
             </StackPanel>
         </Grid>

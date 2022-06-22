@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecordKeeper"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d" 
         Height="300" Width="250"
         WindowStartupLocation="CenterScreen"
@@ -12,14 +13,20 @@
         Title="Добавить пользователя">
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-        <TextBlock Text="Логин" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
-                   Margin="5,15,5,0"/>
+        <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+            <fa:SvgAwesome Icon="Regular_User" Width="15" Height="15"/>
+            <TextBlock Text="Логин" FontFamily="Segoe UI" FontSize="14" FontWeight="DemiBold"
+                       Margin="5,0,0,0"/>
+        </StackPanel>
         <TextBox x:Name="TextBoxLogin"
                  Width="120" MaxWidth="120"
                  Margin="5,0,5,0"/>
 
-        <TextBlock Text="Пароль" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
-                   Margin="5,5,5,0"/>
+        <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+            <fa:SvgAwesome Icon="Solid_Key" Width="15" Height="15"/>
+            <TextBlock Text="Пароль" FontFamily="Segoe UI" FontSize="14" FontWeight="DemiBold"
+                       Margin="5,0,0,0"/>
+        </StackPanel>
         <TextBox x:Name="TextBoxPassword"
                  Width="120" MaxWidth="120"
                  Margin="5,0,5,15"/>
@@ -37,8 +44,14 @@
         </GroupBox>
 
         <Button Style="{StaticResource BaseButtonStyle}" 
-                Width="80" Height="30" Margin="0,15,0,0"
-                Content="Добавить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
-                Click="Button_Click"/>
+                Width="90" Height="30" Margin="0,15,0,0"
+                Click="Button_Click">
+            <StackPanel Orientation="Horizontal">
+                <fa:SvgAwesome Icon="Solid_PlusSquare"
+                               Height="15" Width="15"/>
+                <TextBlock Text="Добавить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                           Margin="5,0,0,0"/>
+            </StackPanel>
+        </Button>
     </StackPanel>
 </Window>
