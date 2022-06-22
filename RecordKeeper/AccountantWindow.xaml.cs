@@ -35,9 +35,7 @@ namespace RecordKeeper
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool AcceptOrDecline = ((sender as Button).Tag as string).Contains("Accept");
-
-            orders.CheckOrder(AcceptOrDecline, (ListViewItem)ListViewOrders.SelectedItem);
+            orders.CheckOrder((sender as Button).Tag as string, (ListViewItem)ListViewOrders.SelectedItem);
 
             UpdateStatus();
         }

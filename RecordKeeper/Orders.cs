@@ -228,19 +228,25 @@ namespace RecordKeeper
             return true;
         }
 
-        public void CheckOrder(bool AcceptOrDecline, ListViewItem listViewItem)
+        public void CheckOrder(string AcceptOrDecline, ListViewItem listViewItem)
         {
-            if (AcceptOrDecline)
+            if (AcceptOrDecline.Contains("Accept"))
             {
                 listViewItem.Foreground = new SolidColorBrush(Colors.Yellow);
 
                 ordersStatus[(int)listViewItem.Tag] = "1";
             }
-            else
+            else if (AcceptOrDecline.Contains("Decline"))
             {
                 listViewItem.Foreground = new SolidColorBrush(Colors.Black);
 
                 ordersStatus[(int)listViewItem.Tag] = "2";
+            }
+            else if (AcceptOrDecline.Contains("Ready"))
+            {
+                listViewItem.Foreground = new SolidColorBrush(Colors.Green);
+
+                ordersStatus[(int)listViewItem.Tag] = "3";
             }
         }
 
