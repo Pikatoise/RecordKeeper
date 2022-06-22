@@ -222,9 +222,9 @@ namespace RecordKeeper
             InitListItems();
         }
 
-        public bool IsOrderChecked (object Tag)
+        public bool IsOrderStatus (object Tag, char status)
         {
-            if (ordersStatus[(int)Tag][0] == '0') return false;
+            if (ordersStatus[(int)Tag][0] == status) return false;
             return true;
         }
 

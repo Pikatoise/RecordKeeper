@@ -42,7 +42,7 @@ namespace RecordKeeper
 
         void UpdateStatus()
         {
-            if (orders.IsOrderChecked(((ListViewItem)ListViewOrders.SelectedItem).Tag))
+            if (orders.IsOrderStatus(((ListViewItem)ListViewOrders.SelectedItem).Tag, '0'))
             {
                 ButtonVisibility(false);
             }

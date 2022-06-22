@@ -68,6 +68,8 @@ namespace RecordKeeper
                     accountantWindow.Show();
                     return;
                 case "Storekeeper":
+                    StoreKeeperWindow storeKeeperWindow = new StoreKeeperWindow();
+                    storeKeeperWindow.Show();
                     return;
             }
         }

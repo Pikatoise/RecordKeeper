@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RecordKeeper"
         mc:Ignorable="d"
         Title="Кладовщик" 
-        Height="450" 
+        Height="420" 
         Width="800"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource BaseWindowStyle}" 
@@ -97,18 +97,11 @@
                       Width="570"
                       Margin="0,5,0,0"
                       Visibility="Collapsed">
-                    <Button Style="{StaticResource RedButtonStyle}" 
-                            Width="120" Height="30" 
-                            Content="Отклонить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
-                            HorizontalAlignment="Left"
-                            Tag="Decline"
-                            Click="Button_Click"/>
-
                     <Button Style="{StaticResource GreenButtonStyle}" 
-                            Width="120" Height="30" 
-                            Content="Принять" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
-                            HorizontalAlignment="Right"
-                            Tag="Accept"
+                            Width="569" Height="30" 
+                            Content="Заказ исполнен" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                            HorizontalAlignment="Center"
+                            Tag="Ready"
                             Click="Button_Click"/>
                 </Grid>
             </StackPanel>
