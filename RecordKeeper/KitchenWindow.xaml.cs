@@ -22,7 +22,7 @@ namespace RecordKeeper
         {
             InitializeComponent();
 
-            orders = new Orders(ListViewOrders,GridDescribe,GridCreation);
+            orders = new Orders(ListViewOrders, GridDescribe, GridCreation);
         }
 
         private void ButtonInsert_Click(object sender, RoutedEventArgs e)
@@ -31,7 +31,7 @@ namespace RecordKeeper
             {
                 orders.AddItemToTemp(new string[] {
                 ((TextBlock)((ListBoxItem)ListBoxType.SelectedItem).Content).Text,
-                TextBoxName.Text, 
+                TextBoxName.Text,
                 TextBoxCount.Text.Replace(" ",""),
                 ((TextBlock)((ListBoxItem)ListBoxUnit.SelectedItem).Content).Text,
                 TextBoxPrice.Text.Replace(" ","")});
@@ -74,6 +74,11 @@ namespace RecordKeeper
             {
                 e.Handled = true;
             }
+        }
+
+        private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            GridCreation.Items.Refresh();
         }
     }
 }

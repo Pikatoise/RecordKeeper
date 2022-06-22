@@ -215,7 +215,7 @@ namespace RecordKeeper
             }
 
             ActiveOrders = new List<List<Item>>();
-            tempOrder = new List<Item>();
+            tempOrder.Clear();
             ordersStatus = new List<string>();
 
             InitOrders();
