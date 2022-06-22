@@ -129,9 +129,9 @@ namespace RecordKeeper
             }
         }
 
-        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        void ListViewItem_Selected(object sender, RoutedEventArgs e)
         {
-            GridDescribe.ItemsSource = ActiveOrders[(int)(sender as ListViewItem).Tag];
+            GridDescribe.ItemsSource = ActiveOrders[(int)(sender as ListViewItem).Tag]; // Проверка на null списка коротких заказов
             GridDescribe.Items.Refresh();
         }
 
@@ -190,6 +190,28 @@ namespace RecordKeeper
 
             InitOrders();
             InitListItems();
+        }
+
+        public bool IsOrderChecked (object Tag)
+        {
+            if (ordersStatus[(int)Tag][0] == '0') return false;
+            return true;
+        }
+
+        public void CheckOrder(bool AcceptOrDecline, ListViewItem listViewItem)
+        {
+            if (AcceptOrDecline)
+            {
+                listViewItem.Foreground = new SolidColorBrush(Colors.Yellow);
+
+                ordersStatus[(int)listViewItem.Tag] = "1";
+            }
+            else
+            {
+                listViewItem.Foreground = new SolidColorBrush(Colors.Black);
+
+                ordersStatus[(int)listViewItem.Tag] = "2";
+            }
         }
     }
 }

@@ -1,0 +1,117 @@
+﻿<Window x:Class="RecordKeeper.AccountantWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecordKeeper"
+        mc:Ignorable="d"
+        Title="Бухгалтерия" 
+        Height="420" 
+        Width="800"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource BaseWindowStyle}" 
+        Icon="/Resources/sunglasses.ico">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" 
+                    Grid.Column="0" 
+                    Margin="10,0,5,0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Список заказов" FontFamily="Segoe UI" FontWeight="Bold" FontSize="16" 
+                           Margin="5,0,5,5"/>
+                <Grid Margin="25,0,0,0" Width="30">
+                    <Grid.ToolTip>
+                        <ToolTip ToolTipService.InitialShowDelay="0" ToolTipService.BetweenShowDelay="0">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5">
+                                    <Rectangle Height="15" Width="15" 
+                                               Fill="Red"/>
+                                    <TextBlock Text=" - Заказ на проверке" FontFamily="Segoe UI" FontSize="12"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5">
+                                    <Rectangle Height="15" Width="15" 
+                                               Fill="Yellow"/>
+                                    <TextBlock Text=" - Заказ проверен и одобрен" FontFamily="Segoe UI" FontSize="12"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5">
+                                    <Rectangle Height="15" Width="15" 
+                                               Fill="Black"/>
+                                    <TextBlock Text=" - Заказ проверен и отклонен" FontFamily="Segoe UI" FontSize="12"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" 
+                                            Margin="5">
+                                    <Rectangle Height="15" Width="15" 
+                                               Fill="Green"/>
+                                    <TextBlock Text=" - Заказ исполнен" FontFamily="Segoe UI" FontSize="12"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ToolTip>
+                    </Grid.ToolTip>
+
+                    <Ellipse Height="15" Width="15" 
+                             Stroke="#0275f7"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Text="i" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="12" 
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+            
+            <ListView x:Name="ListViewOrders" 
+                      Height="335"
+                      FontFamily="Segoe UI" FontSize="16"
+                      SelectionChanged="ListViewOrders_SelectionChanged"/>
+        </StackPanel>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="0">
+                <TextBlock Text="Описание" FontFamily="Segoe UI" FontWeight="Bold" FontSize="16" 
+                       Margin="15,0,5,5"/>
+                <DataGrid x:Name="GridDescribe"
+                      Width="570" Height="335"
+                      FontFamily="Segoe UI" FontSize="12" FontWeight="Bold"
+                      IsReadOnly="True" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" CanUserResizeColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}"/>
+                        <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}"/>
+                        <DataGridTextColumn Header="Единица" Binding="{Binding Path=Unit}"/>
+                        <DataGridTextColumn Header="Цена" Binding="{Binding Path=Price}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid x:Name="PanelButtons"
+                      Width="570"
+                      Margin="0,5,0,0"
+                      Visibility="Collapsed">
+                    <Button Style="{StaticResource RedButtonStyle}" 
+                            Width="120" Height="30" 
+                            Content="Отклонить" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                            HorizontalAlignment="Left"
+                            Tag="Decline"
+                            Click="Button_Click"/>
+                    
+                    <Button Style="{StaticResource GreenButtonStyle}" 
+                            Width="120" Height="30" 
+                            Content="Принять" FontFamily="Segoe UI" FontWeight="DemiBold" FontSize="14"
+                            HorizontalAlignment="Right"
+                            Tag="Accept"
+                            Click="Button_Click"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

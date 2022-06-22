@@ -64,6 +64,8 @@ namespace RecordKeeper
                     kitchenWindow.Show();
                     return;
                 case "Accountant":
+                    AccountantWindow accountantWindow = new AccountantWindow();
+                    accountantWindow.Show();
                     return;
                 case "Storekeeper":
                     return;
