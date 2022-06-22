@@ -30,10 +30,30 @@ namespace RecordKeeper
             }
         }
 
+        public struct SmallItem
+        {
+            public string Type { get; set; }
+
+            int _amount = 0;
+
+            public int Amount 
+            { 
+                get { return _amount; }
+                set { _amount = value; } 
+            }
+
+            public SmallItem(string type, int amount)
+            {
+                this.Type = type;
+                this.Amount = amount;
+            }
+        }
+
         string docPath;
         public List<List<Item>> ActiveOrders = new List<List<Item>>();
         List<Item> tempOrder = new List<Item>();
         List<string> ordersStatus = new List<string>();
+        List<List<SmallItem>> SmallActiveOrders = null;
         DataGrid GridDescribe;
         ListView ListViewOrders;
 
@@ -48,13 +68,18 @@ namespace RecordKeeper
             InitListItems();
         }
 
-        public Orders(ListView listViewOrders, DataGrid gridDescribe)
+        public Orders(ListView listViewOrders, DataGrid gridDescribe, string AccountantOrStorekeeper)
         {
             ListViewOrders = listViewOrders;
             GridDescribe = gridDescribe;
 
             InitOrders();
             InitListItems();
+
+            if (AccountantOrStorekeeper.Contains("Accountant"))
+            {
+                InitSmallActiveOrders();
+            }
         }
 
         void InitOrders()
@@ -131,7 +156,12 @@ namespace RecordKeeper
 
         void ListViewItem_Selected(object sender, RoutedEventArgs e)
         {
-            GridDescribe.ItemsSource = ActiveOrders[(int)(sender as ListViewItem).Tag]; // Проверка на null списка коротких заказов
+            if (SmallActiveOrders == null)
+            {
+                GridDescribe.ItemsSource = ActiveOrders[(int)(sender as ListViewItem).Tag];
+            } 
+            else GridDescribe.ItemsSource = SmallActiveOrders[(int)(sender as ListViewItem).Tag];
+
             GridDescribe.Items.Refresh();
         }
 
@@ -211,6 +241,43 @@ namespace RecordKeeper
                 listViewItem.Foreground = new SolidColorBrush(Colors.Black);
 
                 ordersStatus[(int)listViewItem.Tag] = "2";
+            }
+        }
+
+        void InitSmallActiveOrders()
+        {
+            this.SmallActiveOrders = new List<List<SmallItem>>();
+
+            for (int i = 0; i < ActiveOrders.Count; i++)
+            {
+                List<string> AlreadyExist = new List<string>();
+                SmallActiveOrders.Add(new List<SmallItem>());
+
+                for (int j = 0; j < ActiveOrders[i].Count; j++)
+                {
+                    int currentItemAmount = Convert.ToInt32(ActiveOrders[i][j].Price) * Convert.ToInt32(ActiveOrders[i][j].Count);
+                    string currentItemType = ActiveOrders[i][j].Type;
+
+                    if (AlreadyExist.Contains(currentItemType))
+                    {
+                        SmallItem temp = SmallActiveOrders[i][AlreadyExist.IndexOf(currentItemType)];
+                        temp.Amount = temp.Amount + currentItemAmount;
+                        SmallActiveOrders[i][AlreadyExist.IndexOf(currentItemType)] = temp;
+                    } else
+                    {
+                        SmallActiveOrders[i].Add(new SmallItem(currentItemType, currentItemAmount));
+                        AlreadyExist.Add(currentItemType);
+                    }
+                }
+
+                int totalAmount = 0;
+
+                for (int k = 0; k < SmallActiveOrders[i].Count; k++)
+                {
+                    totalAmount += SmallActiveOrders[i][k].Amount;
+                }
+
+                SmallActiveOrders[i].Add(new SmallItem("", totalAmount));
             }
         }
     }

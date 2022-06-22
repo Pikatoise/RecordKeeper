@@ -25,7 +25,7 @@ namespace RecordKeeper
         {
             InitializeComponent();
 
-            orders = new Orders(ListViewOrders, GridDescribe);
+            orders = new Orders(ListViewOrders, GridDescribe, "Accountant");
         }
 
         private void ListViewOrders_SelectionChanged(object sender, SelectionChangedEventArgs e)
